@@ -11,7 +11,7 @@ from telegram.ext import (
     filters,
 )
 
-from parser import extract_text
+from parser import extract_text, extract_text_from_pdf
 
 
 load_dotenv()
@@ -74,10 +74,14 @@ async def handle_document(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await file.download_to_drive(file_path)
 
     await update.message.reply_text(
-        f"✅ PDF received:\n{document.file_name}\n\n"
-        "🚧 PDF OCR processing will be added next."
+        "📄 PDF received. Reading text..."
     )
 
+    extracted_text = extract_text_from_pdf(file_path)
+
+    await update.message.reply_text(
+        f"📄 Extracted PDF text:\n\n{extracted_text[:3500]}"
+    )
 
 def main():
 

@@ -2,6 +2,8 @@ import os
 import re
 
 import pytesseract
+import fitz
+
 
 from PIL import Image
 from PIL import ImageFilter
@@ -15,6 +17,19 @@ pytesseract.pytesseract.tesseract_cmd = (
 os.environ["TESSDATA_PREFIX"] = (
     r"C:\Program Files\Tesseract-OCR\tessdata"
 )
+
+def extract_text_from_pdf(pdf_path):
+    doc = fitz.open(pdf_path)
+
+    full_text = ""
+
+    for page in doc:
+        full_text += page.get_text()
+        full_text += "\n"
+
+    doc.close()
+
+    return clean_text(full_text)
 
 
 def preprocess_image(image_path):
