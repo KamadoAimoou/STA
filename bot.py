@@ -12,6 +12,8 @@ from telegram.ext import (
 )
 
 from parser import extract_text, extract_text_from_pdf
+from ticket_parser import parse_ticket, format_ticket_summary
+
 
 
 load_dotenv()
@@ -78,10 +80,13 @@ async def handle_document(update: Update, context: ContextTypes.DEFAULT_TYPE):
     )
 
     extracted_text = extract_text_from_pdf(file_path)
+    
+    ticket_data = parse_ticket(extracted_text)
 
-    await update.message.reply_text(
-        f"📄 Extracted PDF text:\n\n{extracted_text[:3500]}"
-    )
+    summary = format_ticket_summary(ticket_data)
+
+    await update.message.reply_text(summary)
+
 
 def main():
 
