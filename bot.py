@@ -13,6 +13,10 @@ from telegram.ext import (
 
 from parser import extract_text, extract_text_from_pdf
 from ticket_parser import parse_ticket, format_ticket_summary
+from entity_extractor import extract_entities, format_entities
+
+
+
 
 
 
@@ -81,9 +85,9 @@ async def handle_document(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     extracted_text = extract_text_from_pdf(file_path)
     
-    ticket_data = parse_ticket(extracted_text)
+    entities = extract_entities(extracted_text)
 
-    summary = format_ticket_summary(ticket_data)
+    summary = format_entities(entities)
 
     await update.message.reply_text(summary)
 

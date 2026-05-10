@@ -1,0 +1,14 @@
+text,label
+KC878,flight_number
+KC621,flight_number
+TK350,flight_number
+10:45,time
+18:30,time
+13J,seat
+14A,seat
+B12,gate
+A5,gate
+ATYRAU,city
+ALMATY,city
+Air Astana,airline
+Turkish Airlines,airline
