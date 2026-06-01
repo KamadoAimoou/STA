@@ -11,7 +11,7 @@ Telegram bot that helps users understand their travel tickets.
 
 ## Tech Stack
 
-- Python
+- Pythong
 - Telegram Bot API
 - OCR
 - Regex

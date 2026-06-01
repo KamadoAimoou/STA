@@ -1,14 +1,66 @@
 text,label
+Air Astana,airline
+Turkish Airlines,airline
+Qatar Airways,airline
+Lufthansa,airline
+Emirates,airline
+FlyArystan,airline
+Scat Airlines,airline
+Pegasus,airline
+Uzbekistan Airways,airline
+Wizz Air,airline
+
+Almaty,city
+Atyrau,city
+Astana,city
+Aktau,city
+Shymkent,city
+Istanbul,city
+Doha,city
+Dubai,city
+Frankfurt,city
+London,city
+
 KC878,flight_number
 KC621,flight_number
 TK350,flight_number
-10:45,time
-18:30,time
+QR391,flight_number
+LH1234,flight_number
+EK242,flight_number
+DV765,flight_number
+FS7123,flight_number
+PC101,flight_number
+W95701,flight_number
+
 13J,seat
 14A,seat
+22C,seat
+7F,seat
+1A,seat
+30B,seat
+18D,seat
+9E,seat
+25K,seat
+3C,seat
+
 B12,gate
 A5,gate
-ATYRAU,city
-ALMATY,city
-Air Astana,airline
-Turkish Airlines,airline
+C22,gate
+D8,gate
+F14,gate
+G3,gate
+E17,gate
+A12,gate
+B7,gate
+C9,gate
+
+10:45,time
+18:30,time
+07:15,time
+23:50,time
+06:05,time
+12:20,time
+15:40,time
+21:10,time
+09:00,time
+00:35,time

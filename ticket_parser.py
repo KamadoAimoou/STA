@@ -47,5 +47,6 @@ def format_ticket_summary(data):
         f"Booking ref: {data['booking_ref']}\n\n"
         "✅ Advice:\n"
         "Arrive at the airport at least 2 hours before departure.\n"
-        "Check terminal and gate on the airport screen."
+        "Check terminal and gate on the airport screen.\n"
+        "Aimurat the world love you "
     )
