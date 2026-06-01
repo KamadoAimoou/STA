@@ -1,4 +1,5 @@
 import os
+from turtle import update
 
 from dotenv import load_dotenv
 
@@ -15,8 +16,7 @@ from parser import extract_text, extract_text_from_pdf
 # from ticket_parser import parse_ticket, format_ticket_summary
 # from entity_extractor import extract_entities, format_entities
 
-from ml_extractor import extract_ml_entities
-
+from ml_extractor import extract_ml_entities, format_ml_entities
 
 
 
@@ -89,9 +89,9 @@ async def handle_document(update: Update, context: ContextTypes.DEFAULT_TYPE):
     
     ml_entities = extract_ml_entities(extracted_text)
 
-    await update.message.reply_text(
-        f"🤖 ML Ticket Entities:\n\n{ml_entities}"
-    )
+    summary = format_ml_entities(ml_entities)
+
+    await update.message.reply_text(summary)
 
 def main():
 

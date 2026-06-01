@@ -24,6 +24,19 @@ def extract_features(value):
         "word_count": len(value.split()),
         "has_space": " " in value,
     }
+    
+def format_ml_entities(entities):
+    return (
+                "✈️ Ticket Summary\n\n"
+        f"Airline: {entities.get('airline', 'Not found')}\n"
+        f"Flight number: {entities.get('flight_number', 'Not found')}\n"
+        f"Seat: {entities.get('seat', 'Not found')}\n"
+        f"Gate: {entities.get('gate', 'Not found')}\n"
+        f"Time: {entities.get('time', 'Not found')}\n"
+        f"City: {entities.get('city', 'Not found')}\n\n"
+        "✅ Advice:\n"
+        "Check your gate and boarding time on the airport screen."
+    )
 
 
 def predict_entity(value):
