@@ -1,5 +1,5 @@
 import os
-from turtle import update
+
 
 from dotenv import load_dotenv
 
@@ -79,7 +79,13 @@ async def handle_document(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     file_path = f"downloads/{document.file_name}"
 
-    await file.download_to_drive(file_path)
+    try:
+        await file.download_to_drive(file_path)
+    except Exception as e:
+        await update.message.reply_text(
+            f"❌ Download error:\n{str(e)}"
+        )
+        return
 
     await update.message.reply_text(
         "📄 PDF received. Reading text..."

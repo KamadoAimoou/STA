@@ -8,6 +8,27 @@ MODEL_PATH = "models/ticket_classifier.pkl"
 
 model = joblib.load(MODEL_PATH)
 
+AIRLINES = [
+    "Air Astana",
+    "FlyArystan",
+    "Turkish Airlines",
+    "Qatar Airways",
+    "Emirates",
+    "Lufthansa",
+    "SCAT",
+]
+
+CITIES = [
+    "ATYRAU",
+    "ALMATY",
+    "ASTANA",
+    "AKTAU",
+    "SHYMKENT",
+    "ISTANBUL",
+    "DOHA",
+    "DUBAI",
+]
+
 
 def extract_features(value):
     value = str(value)
@@ -59,18 +80,55 @@ def extract_tokens(text):
 
 
 def extract_ml_entities(text):
-    tokens = extract_tokens(text)
-
     result = {}
 
-    for token in tokens:
-        entity_type = predict_entity(token)
+    upper_text = text.upper()
 
-        if entity_type not in result:
-            result[entity_type] = token
+    for airline in AIRLINES:
+        if airline.upper() in upper_text:
+            result["airline"] = airline
+            break
+
+    for city in CITIES:
+        if city in upper_text:
+            if "city" not in result:
+                result["city"] = city.title()
+
+    flight_match = re.search(
+        r"\b([A-Z]{2}\s?\d{3,4})\b",
+        text
+    )
+
+    if flight_match:
+        result["flight_number"] = flight_match.group(1)
+
+    seat_match = re.search(
+        r"Seat[:\s]*([0-9]{1,2}[A-Z])",
+        text,
+        re.IGNORECASE
+    )
+
+    if seat_match:
+        result["seat"] = seat_match.group(1)
+
+    time_match = re.search(
+        r"\b([0-2]?\d:[0-5]\d)\b",
+        text
+    )
+
+    if time_match:
+        result["time"] = time_match.group(1)
+
+    gate_match = re.search(
+        r"Gate[:\s]*([A-Z]?\d{1,3})",
+        text,
+        re.IGNORECASE
+    )
+
+    if gate_match:
+        result["gate"] = gate_match.group(1)
 
     return result
-
 
 if __name__ == "__main__":
     sample_text = "Air Astana flight KC878 seat 13J gate B12 departure 10:45 from Almaty"
